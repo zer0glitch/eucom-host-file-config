@@ -6,7 +6,7 @@
 
 {% if inventory_hostname in groups['foreman_eucom_rhel_8'] %}
 {% for server in groups['foreman_eucom_rhel_8'] %}
-{{ hostvars[server]['ansible_default_ipv4'].address    {{ server }}
+{{ hostvars[server]['ansible_default_ipv4'].address }}   {{ server }}
 
 {% endfor %}
 {% endif %}
