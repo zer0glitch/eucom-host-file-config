@@ -1,13 +1,12 @@
 127.0.0.1       localhost
 
-
 {{ ansible_default_ipv4.address }}  {{ inventory_hostname }}    
 
 #lifecycle_environment_name: Library
 
 {% if inventory_hostname in groups['foreman_eucom_rhel_8'] %}
 {% for server in groups['foreman_eucom_rhel_8'] %}
-{{ server }}
+{{ hostsvars[server]['ansible_default_ipv4'].address    {{ server }}
 
 {% endfor %}
 {% endif %}
