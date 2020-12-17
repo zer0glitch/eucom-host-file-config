@@ -1,2 +1,7 @@
 ---
 # tasks file for eucom-host-file-config/
+
+- name: copy over a sample host
+  template:
+    src: hosts.j2
+    dest: /tmp/hosts
