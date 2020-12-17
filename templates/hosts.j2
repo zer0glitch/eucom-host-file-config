@@ -1,0 +1,13 @@
+127.0.0.1       localhost
+
+
+{{ facts['andible_default_ipv4'] }}  {{ inventory_hostname }}    
+
+#lifecycle_environment_name: Library
+
+{% if inventory_hostname_in group['foreman_eucom_rhel_8'] %}
+{% for server in group['foreman_eucom_rhel_8'] %}
+   server
+
+{% endfor %}
+{% endif %}
