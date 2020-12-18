@@ -1,12 +1,25 @@
 127.0.0.1       localhost
 
+## Set the host name for for the server
 {{ ansible_default_ipv4.address }}  {{ inventory_hostname }}    
 
-#lifecycle_environment_name: Library
 
-{% if inventory_hostname in groups['foreman_eucom_rhel_8'] %}
-{% for server in groups['foreman_eucom_rhel_8'] %}
+## Check to see if the host is in a certain group
+## This value should be a parameter 
+## the example is not flushed out completely
+## for a production environment this would be something that
+## is a host group created in satellite.  Example 'foreman_eucom_prod_jboss, foreman_eucom_dev_jboss'
+
+{% if inventory_hostname in groups['foreman_eucom_dev_servers'] %}
+
+## add host entries for all jboss servers
+{% for server in groups['foreman_eucom_dev_jboss'] %}
 {{ hostvars[server]['ansible_default_ipv4'].address }}   {{ server }}
-
 {% endfor %}
+
+## add host entries for all database servers
+{% for server in groups['foreman_eucom_dev_db'] %}
+{{ hostvars[server]['ansible_default_ipv4'].address }}   {{ server }}
+{% endfor %}
+
 {% endif %}
